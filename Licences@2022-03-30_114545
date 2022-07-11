@@ -1,0 +1,92 @@
+Three kind of licences
+	1)smart                 ==> automatically          
+	2)calssic               ==> physical
+	3)enterprise aggrement  ==> cloud based
+	
+	licences are filtered by assigned and unassigned
+	assigned licences are nothing but which are assigned to smart account or virtual account
+	
+	if we have unassigned pack which means that product autorization key doesn't assigned to any smart or virtual account
+	when you click on assign to account you need to select virtual account and it will assign to infosys smart account
+	
+	here we have packages
+	each package have multiple skews
+	and each skew has multiple licences and features
+	
+	EX:
+	PACKAGE: ==> it is a production authorized key     Infosys, Fpr130
+	Top Skew: (Laptp)
+	licence/feature aa -- 1      (Mouse)                                                      so now features are assigned to sa and va
+	licence/feature bb -- 2      (Key board)
+	licence/feature cc --3       (Os)  
+	
+	
+	PACKAGE2:
+	SKUS2:
+		FEAT AA --    SO IN UI IT SHOWING AS TOTAL COUNT OF FEAT AA
+		FEAT BB --
+		FEAT CC --
+		
+		
+	these are nothing but cisco products
+	
+	in assigned we can see only package once we assigned this pack to sa or va we can see those features in sa and va
+	
+	after assigning this packages in assigning filter we can see only assigned features
+	
+	if we serch with package we will get multiple features
+	
+	when we serch with package
+	we will get features regarding that package but all this features may assigned to different virtual accounts
+	
+	SO IN UI IT WILL SHOW CONSOLIDETED FEATURES IF I HAVE FEAT AA 6 IN UI IT MAY UNDER DIFFERENT PACKS OR ASSIGNED TO DIFFERENT VA
+	
+	
+	IN UI WE CAN SEE PURCHASED INUSE AND BALANCED
+	
+	Purchased means total number of licence/feature
+	inuse means consumed and remaining licence/feature are balanced
+	
+	consumption is not based on feature it is based on package first we need to select package then feature
+	consumption means we need to generate a licence and we need to use it
+	first we need to create a package / skew then we can create number of features
+	from those features we can use partially which means we can use one and remaining or in balanced 
+	
+	user can buy feature wih one va and we can use those features in different vas
+	
+	it's called as shared quantity across all vas
+
+	XML5XGXQGRK
+	XML5XGXQGRK
+	
+	API's responsible for this licene
+	
+	eam-api -- wrappers               
+	mce-uee-lic - connecting mce-ES to UI earlier we used to use es but now we migrated to mce-ES
+	
+	Production issues:
+	==> 
+	
+	
+	
+	
+	
+	
+	PACKAGE1                          sa1 boa-devices
+	Top level skew (Laptp)     	sa1  boa-devices
+		Licenec/fetaures aa  (Mouse)   sa1  boa-devices
+		Licenec/fetaures bb     sa1  boa-devices
+		Licenec/fetaures cc     sa1  boa-devices          ev-it
+		
+	PACKAGE2                          infosys EV-IT
+	Top level skew                     infosys EV-IT
+		Licenec/fetaures aa   (Mouse) infosys EV-IT
+		Licenec/fetaures bb           infosys EV-IT
+		Licenec/fetaures cc           infosys EV-IT
+	
+		
+		
+		
+		licence/feature aa ==>2
+		bb ==>2
+		cc ==> 2

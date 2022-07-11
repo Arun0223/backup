@@ -1,0 +1,30 @@
+git config --global user.name 'Arun kumar'
+git config --global user.email 'arunkumarmuduthanapelli4@gmail.com'
+git config --global user.name
+git add filename
+git commit -m "message"
+git remote set-url origin path       (ignore)
+git remote add origin path
+git remote show origin
+git remote -v
+git push origin master
+
+PULL AND FETCH:
+GIT PULL:
+==> if we want to fetch project from remote repo to local repo we will use git pull
+remote repo =======> origin/master ======> Local repo
+              FETCH                  MERGE
+			  
+    The above netire process is called as git pull request
+	
+CLONE:
+git clone -b <branch-name> <path>
+
+
+https://cisco.webex.com/meet/sshawnav
+
+git clone https://Arun0223@bitbucket.org/arun0223/first.git
+ZscwFHCYePVRRwye2BxT
+	
+ZscwFHCYePVRRwye2BxT
+

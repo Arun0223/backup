@@ -1,0 +1,52 @@
+https://www.youtube.com/watch?v=cC4GGJ0JsSE
+
+Elastic search  ==> is a database
+Log stash ==> Data injection
+Kibana --> analytics or visualixation
+
+cluster:
+is a combination of two or more nodes in which a adata stored and provide a search capability across all servers
+Index:
+Index is a collection of documents
+Node:
+A node is a single server that holds a data, this node can be in any cluster
+Shards:
+An index can be devidend into many shards, it's a subset of index and collection of documents
+
+
+------------------------------------------------------------------------------------------------------------------------
+-> Elasticsearch security features have been automatically configured!
+-> Authentication is enabled and cluster connections are encrypted.
+
+->  Password for the elastic user (reset with `bin/elasticsearch-reset-password -u elastic`):
+  JMfpRA+-UGVo6MzWbJdj
+
+->  HTTP CA certificate SHA-256 fingerprint:
+  ababbc82339af9efbf19f058dd3d1f62178c0ed120cc41d118e662f27588cdba
+
+->  Configure Kibana to use this cluster:
+* Run Kibana and click the configuration link in the terminal when Kibana starts.
+* Copy the following enrollment token and paste it into Kibana in your browser (valid for the next 30 minutes):
+  eyJ2ZXIiOiI4LjEuMiIsImFkciI6WyIxOTIuMTY4LjIwNy4yNDU6OTIwMCJdLCJmZ3IiOiJhYmFiYmM4MjMzOWFmOWVmYmYxOWYwNThkZDNkMWY2MjE3OGMwZWQxMjBjYzQxZDExOGU2NjJmMjc1ODhjZGJhIiwia2V5IjoiQjlrX0hvQUI2WDZodmpXZjM2dHU6WndaTjJ4dVFUalNnYnp0bC1XOFktZyJ9
+
+->  Configure other nodes to join this cluster:
+* On this node:
+  - Create an enrollment token with `bin/elasticsearch-create-enrollment-token -s node`.
+  - Uncomment the transport.host setting at the end of config/elasticsearch.yml.
+  - Restart Elasticsearch.
+* On other nodes:
+  - Start Elasticsearch with `bin/elasticsearch --enrollment-token <token>`, using the enrollment token that you generated.
+
+user=>"elastic"
+password=>"JMfpRA+-UGVo6MzWbJdj"
+
+
+elasticsearch.hosts: ['https://localhost:9200']
+elasticsearch.serviceAccountToken: AAEAAWVsYXN0aWMva2liYW5hL2Vucm9sbC1wcm9jZXNzLXRva2VuLTE2NDk0ODEwODQ1NDU6d3Foa3Rrd0lURHFweGtrNUdfc21xUQ
+elasticsearch.ssl.certificateAuthorities: ['C:\ELK\kibana-8.1.2-windows-x86_64\kibana-8.1.2\data\ca_1649481085705.crt']
+xpack.fleet.outputs: [{id: fleet-default-output, name: default, is_default: true, is_default_monitoring: true, type: elasticsearch, hosts: ['https://10.209.216.106:9200'], ca_trusted_fingerprint: 8eb01572c26060137c6cc8278c0e514a09a88322660c9f13f8034b0375096e70}]
+
+
+bin\elasticsearch-create-enrollment-token.bat --scope kibana
+
+

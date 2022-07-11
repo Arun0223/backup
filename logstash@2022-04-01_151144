@@ -1,0 +1,43 @@
+MCE Data points
+   1)oracle               CSF prod   our main database
+   2)elastic search     AIIN, RCON
+   3)mongo db            mce_db
+   
+   ELK:
+		elastic search ==> database
+		Logstach ==> Data injection
+		Kibana   ==> visualization and performing queries
+		
+   5 data source
+       devices data
+	   license
+	   services
+	   subscriptions
+	   version upgrades      devices version upgrade
+	                         edelivery delivery
+							 
+							 
+							 
+							 
+we are injecting data from oracle to ES using logtsah pipelines using below methods
+
+1)OTM    ==> one time
+2)Incrimental  ==> Day to Day
+
+
+Logstash three blocks are there
+
+input :{oracle/kafka}
+filter : {Manipulated program}    ==> oraclr to elastic that don't know primary key so this profram has those details
+output: {Elastic connection details}
+
+GET mce-service-contracts-*
+
+
+es have two clusters
+1)Rcdn ==> clusters
+2)Alln ==> clusters
+
+if any cluster entire both cluster down
+
+

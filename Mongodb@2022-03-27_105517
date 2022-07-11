@@ -1,0 +1,122 @@
+show dbs
+show collections; ## to check the all collections in db
+db ==> to check in which db we are
+db.createcollection('name') ==> to create a collections
+we have another method to create a collections
+db.collectionname.insert({}) ==> it will automaticallt create a collection and insert the data
+db.collectionname.find() ==> it will show all the records in collection
+
+
+How to insert to documents:
+	db.collectionname.insert({})
+	Ex:
+		db.student.insert({Roll_No:'1234',Name:'Student1',Course:{Coursename:'EEE',duration:'3years'},address:{H_NO:'2-73',city:'Bangalore',state:'Karnataka'}})
+		db.student.insert({_id:101,Roll_No:'1234',Name:'Student2',Course:{Coursename:'EEE',duration:'3years'},address:{H_NO:'2-73',city:'Bangalore',state:'Karnataka'}})
+	var myemp= [ { empid:1,empname:"arun"},{empid:2,empname:'kumar'},{empid:3,empname: 'Teja'}]
+    db.collectionname.insert(myemp) ## to insert bulk data or records
+	
+	
+	## UPDATE:
+	  db.newwmp.update({empname:"Teja"},{$set:{empname:"sai teja"}}) ## to update the record where name == Teja to saiteja
+	  when we are try to update it will come from top and updated the first record
+	  if we want to change multipple times:
+	    db.newwmp.update({empname:"Teja"},{$set:{empname:"sai teja"}},{multi:true})
+	##UPSERT ==> combination of update + insert
+		1)if record is not available it will insert
+		Ex:
+			db.student.update({name:'Harish'},{$set:{name:'Harish.s'}},{upsert:true})
+		
+How to delete records...??
+	1)db.collectionname.remove(record)
+	Ex:
+		db.student.remove({'name':'Harish.s'})
+		
+How to fetch the records:
+	1)db.collectionname.find()
+	2)db.collectionname.find({record})
+	3)db.collectionname.find().limit(2) ## to limit the total records to 2
+	4)db.collectionname.find().sort({recordname:1 or -1}) 1 for ascending order -1 for descending order
+	Ex:
+		db.student.find().sort({name:-1})
+	5)Fetching the records based on Embeded documents:
+		a)db.collectionname.find()
+		ex:
+			db.student.find({"course.course_name":"Mech"})
+	6)Fetching the records based on Less than or greater than....??
+	Ex:
+		db.student.find({"course.course_duration":{$gt:2}}) ==> greaterthan
+		db.student.find({"course.course_duration":{$lt:2}}) ==> Lessthan
+		db.student.find({name:{$in:['Teja']}})
+		db.student.find({emp_id:{$in:[1,2,3,4,5,6]}}) ==> it will give the records in 1 to 6
+INDEXING:
+	==> it's the very important feature in Mongodb compared to all other databases
+	db.student.explain("executionStats").find({name:"Teja"})
+	1) It will tell me how my query got executed
+	 here total no of documents examined is if we have million no of documents to be examined it's very difficult so that's why we have indxeing feature
+	 
+	By default indexing will apply on _id in mongo db
+	
+	db.collectionname.getindexes() ==> will tell abouyt our indexing
+	==> Mongodb will support multicoloumn indexing
+	  db.student.explain("executionStats").find({name:"Teja"})
+	   here total no of documents examined 1 so that's why we need indexing
+	   
+	   By default index will apply on _id
+	   
+	==> Applying indexing on single coloumn
+		Ex:
+			db.practic1.createIndex({name:1}) 1 for ascending oreder and -1 for descending oredr
+			
+	   Mongo db support multi coloumn indexing
+	
+	
+	*** We can also apply indexing on multiple properties:
+	==> Applying indexing on multiple coloumns:
+		 making another coloumn as index
+	
+	
+	
+	2) dropping a index:
+	**db.collectionname.dropIndex("indexname")
+	
+Aggregration in Mongodb:
+	it's called as aggregrate
+	it's like using previous command output for next command
+	
+	
+	$project --> select specific fields    ===> 1 or 0
+	
+	$match  --> filtering out the operations
+	
+	$group --> does the actual aggregration
+
+	$sort --> for sorting
+	
+	Ex:
+		db.practic1.aggregate([{"$match":{"address.city":"Mancherial"}}])
+		db.practic1.aggregate([{"$match": {$and:[{"address.city":"Mancherial"},{"name":"sai teja"}]}}])
+
+	How to bring specific record/ field from document:
+		db.practic1.aggregate([{"$project":{name:1}}]) ## one is i want and 0 is i don't wnat
+		db.practic1.aggregate([{"$project":{name:1,"address.city":1}}]) ## here i wnat to see only name and city
+		
+	$match + $ project:
+		db.practic1.aggregate([{"$match":{"name":"sai teja"}},{"$project":{"name":1,"address.city":1}}])
+	
+Group by:
+		it's also a part of aggregration
+		
+Aggregrations:
+{$sort}
+{$match}		
+
+db.product.aggregate([{$group:{"_id":"$product",totalQuantity:{$sum:"$total"}}}])
+
+db.collection.find({"aa":aa}) ## to find the trotal count
+db.collection.distinct("filed_name') ## to find the unique element in collection
+
+db.product.aggregate([ {$sort:{"product":-1}},{$match:{"customer":{$in:["Mike","Karen"]}}},{$group:{"_id":"$customer",total:{$sum:"$total"}}},{$sort:{cutomer:1}}])
+db.product.aggregate({$match:{"product":"oil"}})
+db.product.aggregate([{$match:{"product":"oil"}},{$sort:{"cutomer":-1}}])
+$group: { _id: "$name", totalQuantity: { $sum: "$quantity" } }
+$match: {size: "medium"}
